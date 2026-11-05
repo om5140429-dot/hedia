@@ -1,0 +1,13 @@
+{
+  "rules": {
+    "movies": {
+      ".read": true,
+      ".write": false,
+      "$movieId": {
+        "streamUrl": {
+          ".read": true
+        }
+      }
+    }
+  }
+}
