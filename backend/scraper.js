@@ -53,16 +53,17 @@ async function clickPlayControls(page) {
   }
 }
 
-const browser = await puppeteer.launch({
+export async function extractStreamUrl(pageUrl) {
+  const browser = await puppeteer.launch({
     executablePath: process.env.PUPPETEER_EXECUTABLE_PATH || undefined,
     headless: true,
     args: [
-        "--no-sandbox", 
-        "--disable-setuid-sandbox", 
-        "--disable-dev-shm-usage",
-        "--autoplay-policy=no-user-gesture-required"
+      "--no-sandbox", 
+      "--disable-setuid-sandbox", 
+      "--disable-dev-shm-usage",
+      "--autoplay-policy=no-user-gesture-required"
     ],
-});
+  });
 
   try {
     const page = await browser.newPage();
