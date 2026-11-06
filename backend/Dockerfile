@@ -31,15 +31,16 @@ COPY . .
 # Final stage for app image
 FROM base
 
-# Install packages needed for deployment
+# Install packages needed for deployment and shared memory cleanup
 RUN apt-get update -qq && \
-    apt-get install --no-install-recommends -y chromium chromium-sandbox && \
-    rm -rf /var/lib/apt/lists /var/cache/apt/archives
+    apt-get install --no-install-recommends -y chromium chromium-sandbox libglib2.0-0 libnss3 libnspr4 libatk1.0-0 libatk-bridge2.0-0 libcups2 libdrm2 libdbus-1-3 libxkbcommon0 libxcomposite1 libxdamage1 libxfixes3 libxrandr2 libgbm1 libasound2 && \
+    rm -rf /var/lib/apt/lists/* /var/cache/apt/archives/*
 
 # Copy built application
 COPY --from=build /app /app
 
-# Start the server by default, this can be overwritten at runtime
-EXPOSE 3000
+# Expose the correct Fly.io port
+EXPOSE 8080
+ENV PORT=8080
 ENV PUPPETEER_EXECUTABLE_PATH="/usr/bin/chromium"
 CMD [ "npm", "run", "start" ]
