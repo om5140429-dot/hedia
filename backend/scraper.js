@@ -54,16 +54,14 @@ async function clickPlayControls(page) {
 }
 
 export async function extractStreamUrl(pageUrl) {
+  // تم تعديل مسار التنفيذ وإزالة الأعلام الخاصة بـ Docker لتناسب بيئة Termux على الأندرويد
   const browser = await puppeteer.launch({
-    executablePath: "/usr/bin/chromium",
     headless: true,
     args: [
       "--no-sandbox", 
       "--disable-setuid-sandbox", 
       "--disable-dev-shm-usage",
       "--disable-gpu",
-      "--no-zygote",
-      "--single-process",
       "--autoplay-policy=no-user-gesture-required"
     ],
   });
