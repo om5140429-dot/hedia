@@ -55,12 +55,15 @@ async function clickPlayControls(page) {
 
 export async function extractStreamUrl(pageUrl) {
   const browser = await puppeteer.launch({
-    executablePath: process.env.PUPPETEER_EXECUTABLE_PATH || undefined,
+    executablePath: "/usr/bin/chromium",
     headless: true,
     args: [
       "--no-sandbox", 
       "--disable-setuid-sandbox", 
       "--disable-dev-shm-usage",
+      "--disable-gpu",
+      "--no-zygote",
+      "--single-process",
       "--autoplay-policy=no-user-gesture-required"
     ],
   });
