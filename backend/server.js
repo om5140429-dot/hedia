@@ -62,5 +62,6 @@ app.get("/", (req, res) => {
   res.status(200).send("Backend is alive!");
 });
 
-const PORT = process.env.PORT || 8080;
+// تم ضبط البورت ليعمل مرناً مع بيئة Termux المحلية أو متغيرات النظام
+const PORT = process.env.PORT || 3000;
 app.listen(PORT, '0.0.0.0', () => console.log(`Backend listening on port ${PORT}`));
