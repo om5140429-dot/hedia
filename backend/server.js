@@ -56,8 +56,8 @@ app.post("/release", (req, res) => {
       console.error(`Release failed for ${movieId}:`, error);
       res.status(500).json({ error: "release failed" });
     });
-  
 });
+
 app.get("/", (req, res) => {
   res.status(200).send("Backend is alive!");
 });
